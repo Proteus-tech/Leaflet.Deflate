@@ -55,6 +55,7 @@ L.Map.Deflate = L.Map.extend({
 
         this.on('zoomend', function () {
             var removedTemp = [];
+            this.removedPaths = [];
 
             this.eachLayer(function (feature) {
                 if (this.getZoom() <= feature.zoomThreshold) {
