@@ -43,16 +43,12 @@ L.Map.Deflate = L.Map.extend({
 
         this.on('layeradd', function(event) {
             var feature = event.layer;
-            if (feature.getBounds && !feature.zoomThreshold && !feature.marker) {
+            if (feature.getBounds && !feature.zoomThreshold) {
                 var zoomThreshold = this.getZoomThreshold(feature);
-                var marker = L.marker(feature.getBounds().getCenter());
-
                 feature.zoomThreshold = zoomThreshold;
-                feature.marker = marker;
 
                 if (this.getZoom() <= zoomThreshold) {
                     this.removeLayer(feature);
-                    this.addLayer(feature.marker);
                 }
             }
         });
